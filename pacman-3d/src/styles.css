@@ -1,1 +1,25 @@
-/* You can add global styles to this file, and also import other style files */
+/* Quantico will be used for all UI */
+@font-face {
+  font-family: "Quantico";
+  src: url("assets/Quantico/Quantico-Regular.ttf") format("truetype");
+  font-display: swap; /* Improves loading performance */
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Nabla will be used for stylized UI */
+@font-face {
+  font-family: "Nabla";
+  src: url("assets/Nabla/Nabla-Regular-Variable.ttf") format("truetype");
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Quantico", sans-serif;
+}
+
+.stylized-text {
+  font-family: "Nabla", cursive;
+}
