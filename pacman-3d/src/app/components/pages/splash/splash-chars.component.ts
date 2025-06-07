@@ -55,7 +55,7 @@ export class SplashChars {
     'M',
     'A',
     'N',
-    '',
+    '\u00A0',
     '3',
     'D',
   ];

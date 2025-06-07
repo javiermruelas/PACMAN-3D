@@ -4,46 +4,51 @@ import { Component, Input } from '@angular/core';
   selector: 'pac-button',
   standalone: true,
   template: `
-    <button [class.large]="size === 'large'" [class.small]="size === 'small'">
+    <button [class]="buttonClasses">
       <ng-content></ng-content>
     </button>
   `,
   styles: [
     `
       button {
-        background-color: #fdd521;
+        background-color: var(--button-bg);
         border: none;
-        border-radius: 4px;
-        padding: 12px 24px;
+        border-radius: var(--button-border-radius);
+        padding: var(--button-padding-default);
         cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 0 #f97429;
+        transition: var(--button-transition);
+        box-shadow: 0 var(--button-shadow-size) 0 var(--button-shadow);
         position: relative;
         top: 0;
-        color: #000;
+        color: #000000;
       }
 
       button:hover {
-        background-color: #ffdf00;
+        background-color: var(--button-hover-bg);
         transform: translateY(2px);
-        box-shadow: 0 2px 0 #f97429;
+        box-shadow: 0 2px 0 var(--button-shadow);
       }
 
       button:active {
-        transform: translateY(4px);
+        transform: translateY(var(--button-shadow-size));
         box-shadow: none;
       }
 
-      .large {
-        padding: 16px 32px;
+      .lg {
+        padding: var(--button-padding-lg);
       }
 
-      .small {
-        padding: 8px 16px;
+      .sm {
+        padding: var(--button-padding-sm);
       }
     `,
   ],
 })
 export class ButtonComponent {
-  @Input() size: 'small' | 'large' | 'default' = 'default';
+  @Input() size: 'sm' | 'lg' | 'default' = 'default';
+  @Input() classes: string[] = [];
+
+  protected get buttonClasses(): string {
+    return `${this.size} ${this.classes.join(' ')}`;
+  }
 }
