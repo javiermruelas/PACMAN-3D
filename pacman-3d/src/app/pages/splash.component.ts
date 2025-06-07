@@ -1,10 +1,68 @@
 import { Component } from '@angular/core';
 
-/** This component represents our application's splash page! */
 @Component({
   selector: 'app-splash',
   standalone: true,
-  template: ` <p>Pacman 3D</p> `,
-  styles: [],
+  template: `
+    <div class="splash-wrapper">
+      @for (char of splashChars; track $index) {
+        <p class="pac-text" [style.animation-delay]="$index * 0.1 + 's'">
+          {{ char }}
+        </p>
+      }
+    </div>
+  `,
+  styles: [
+    `
+      .splash-wrapper {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        gap: 1vw;
+      }
+      .pac-text {
+        font-size: clamp(2rem, 10vw, 12rem);
+        margin: 0;
+        animation: bounce 0.5s ease infinite alternate;
+        text-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+      }
+      .pac-text:nth-child(2n + 1) {
+        animation-name: pulse;
+      }
+      @keyframes bounce {
+        from {
+          transform: translateY(0);
+        }
+        to {
+          transform: translateY(-20px);
+        }
+      }
+      @keyframes pulse {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.1);
+        }
+      }
+    `,
+  ],
 })
-export class SplashComponent {}
+export class SplashComponent {
+  protected splashChars: string[] = [
+    'P',
+    'A',
+    'C',
+    'M',
+    'A',
+    'N',
+    '',
+    '3',
+    'D',
+  ];
+}
