@@ -1,1 +1,2 @@
-export * from './overlay';
+export * from './pages';
+export * from './button.component';

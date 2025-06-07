@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-splash',
-  standalone: true,
+  selector: 'pac-splash-chars',
   template: `
-    <div class="splash-wrapper">
+    <div class="splash-chars">
       @for (char of splashChars; track $index) {
         <p class="pac-text" [style.animation-delay]="$index * 0.1 + 's'">
           {{ char }}
@@ -14,16 +13,11 @@ import { Component } from '@angular/core';
   `,
   styles: [
     `
-      .splash-wrapper {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+      .splash-chars {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
-        gap: 1vw;
       }
       .pac-text {
         font-size: clamp(2rem, 10vw, 12rem);
@@ -53,7 +47,7 @@ import { Component } from '@angular/core';
     `,
   ],
 })
-export class SplashComponent {
+export class SplashChars {
   protected splashChars: string[] = [
     'P',
     'A',

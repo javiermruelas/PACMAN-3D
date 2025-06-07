@@ -1,8 +1,11 @@
 import { Routes } from '@angular/router';
-import { SplashComponent, GameComponent } from './pages';
-import { PauseComponent } from './components/overlay/pause.component';
-import { GameEndComponent } from './components/overlay/game-end.component';
-import { SettingsComponent } from './components/overlay/settings.component';
+import {
+  SplashComponent,
+  GameComponent,
+  PauseComponent,
+  GameEndComponent,
+  SettingsComponent,
+} from './components';
 
 export const routes: Routes = [
   {

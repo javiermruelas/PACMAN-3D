@@ -79,3 +79,8 @@ body {
 .pac-text {
   font-family: "Nabla", cursive;
 }
+
+:root {
+  --nabla-orange: #f97429;
+  --nabla-yellow: #fdd521;
+}
