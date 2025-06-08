@@ -5,7 +5,7 @@ import {
   PauseComponent,
   GameEndComponent,
   SettingsComponent,
-} from './components';
+} from './pages';
 
 export const routes: Routes = [
   {
