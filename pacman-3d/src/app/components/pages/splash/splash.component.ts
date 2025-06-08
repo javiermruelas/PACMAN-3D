@@ -2,10 +2,12 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { ButtonComponent } from '../../button.component';
 import { SplashChars } from './splash-chars.component';
 import { Router } from '@angular/router';
+import { MusicService } from '../../../services/music.service';
 
 @Component({
   selector: 'app-splash',
   imports: [ButtonComponent, SplashChars],
+  providers: [MusicService],
   standalone: true,
   template: `
     <div id="splash-page" class="page splash">
@@ -60,7 +62,18 @@ import { Router } from '@angular/router';
 export class SplashComponent {
   private static bubbleAmount = 25;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private music: MusicService,
+  ) {}
+
+  private playIntro(): void {
+    this.music.start();
+
+    setTimeout(() => {
+      this.music.stop();
+    }, 3050);
+  }
 
   private createBubbles(): HTMLDivElement[] {
     let bubbles: HTMLDivElement[] = [];
@@ -90,6 +103,8 @@ export class SplashComponent {
    * Begins bubble animation and navigates us to game.
    */
   protected startGame(): void {
+    this.playIntro();
+
     const bubbleContainer = document.createElement('div');
     bubbleContainer.className = 'bubble-wrapper';
     document.body.appendChild(bubbleContainer);
