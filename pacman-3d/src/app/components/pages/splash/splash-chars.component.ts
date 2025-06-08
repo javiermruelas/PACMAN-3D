@@ -46,6 +46,7 @@ import { Component } from '@angular/core';
       }
     `,
   ],
+  standalone: true,
 })
 export class SplashChars {
   protected splashChars: string[] = [

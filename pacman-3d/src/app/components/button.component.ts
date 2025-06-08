@@ -2,7 +2,6 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'pac-button',
-  standalone: true,
   template: `
     <button [class]="buttonClasses">
       <ng-content></ng-content>
@@ -43,6 +42,7 @@ import { Component, Input } from '@angular/core';
       }
     `,
   ],
+  standalone: true,
 })
 export class ButtonComponent {
   @Input() size: 'sm' | 'lg' | 'default' = 'default';

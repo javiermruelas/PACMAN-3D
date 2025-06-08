@@ -25,9 +25,7 @@ import { Router } from '@angular/router';
       .bubble {
         width: 100px;
         height: 100px;
-        background-color: #000000;
         border-radius: 50%;
-        opacity: 0.8;
         position: absolute;
         transform: scale(1);
       }
@@ -44,11 +42,15 @@ import { Router } from '@angular/router';
       @keyframes bubbleGrow {
         0% {
           transform: scale(1);
-          background-color: #000000;
+          background-color: var(--nabla-orange);
+        }
+        50% {
+          transform: scale(3);
+          background-color: var(--nabla-light-yellow);
         }
         100% {
           transform: scale(5);
-          background-color: var(--pac-yellow);
+          background-color: var(--nabla-yellow);
         }
       }
     `,
@@ -56,7 +58,7 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class SplashComponent {
-  private static bubbleAmount = 10;
+  private static bubbleAmount = 25;
 
   constructor(private router: Router) {}
 

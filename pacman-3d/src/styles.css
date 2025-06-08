@@ -88,11 +88,12 @@ body {
 :root {
   --nabla-orange: #f97429;
   --nabla-yellow: #fdd521;
+  --nabla-light-yellow: #fffabe;
   --pac-yellow: #ffdf00;
 
   /* Button Variables */
   --button-bg: var(--nabla-yellow);
-  --button-hover-bg: var(--pac-yellow);
+  --button-hover-bg: var(--nabla-light-yellow);
   --button-shadow: var(--nabla-orange);
   --button-shadow-size: 8px;
   --button-border-radius: 4px;

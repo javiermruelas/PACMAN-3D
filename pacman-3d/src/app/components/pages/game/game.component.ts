@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { GameOverlay } from './overlay.component';
+import { GameOverlay } from '../../overlay.component';
+import { GamePad } from '../../game-pad.component';
 
 @Component({
   selector: 'pac-game',
-  imports: [GameOverlay],
+  imports: [GameOverlay, GamePad],
   standalone: true,
   template: `
     <div class="game-container">
       <game-overlay></game-overlay>
+      <pac-game-pad></pac-game-pad>
       <div class="game-canvas"></div>
     </div>
   `,
