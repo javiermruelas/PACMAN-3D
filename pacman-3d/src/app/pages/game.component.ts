@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { GameOverlay } from '../../overlay.component';
-import { GamePad } from '../../game-pad.component';
+import { GameOverlay, GamePad } from '../components';
 
 @Component({
   selector: 'pac-game',

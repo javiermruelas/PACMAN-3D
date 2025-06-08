@@ -1,8 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { ButtonComponent } from '../../button.component';
-import { SplashChars } from './splash-chars.component';
 import { Router } from '@angular/router';
-import { MusicService } from '../../../services/music.service';
+import { SplashChars, ButtonComponent } from '../components';
+import { MusicService } from '../services';
 
 @Component({
   selector: 'app-splash',
