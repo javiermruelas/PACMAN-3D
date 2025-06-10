@@ -4,7 +4,7 @@ import { SplashChars, ButtonComponent } from '../components';
 import { MusicService } from '../services';
 
 @Component({
-  selector: 'app-splash',
+  selector: 'pac-splash',
   imports: [ButtonComponent, SplashChars],
   providers: [MusicService],
   standalone: true,
@@ -58,7 +58,7 @@ import { MusicService } from '../services';
   ],
   encapsulation: ViewEncapsulation.None,
 })
-export class SplashComponent {
+export class SplashPageComponent {
   private static bubbleAmount = 25;
 
   constructor(
@@ -77,7 +77,7 @@ export class SplashComponent {
   private createBubbles(): HTMLDivElement[] {
     let bubbles: HTMLDivElement[] = [];
 
-    for (let i = 0; i < SplashComponent.bubbleAmount; i++) {
+    for (let i = 0; i < SplashPageComponent.bubbleAmount; i++) {
       const bubble = document.createElement('div');
       bubble.className = 'bubble';
 

@@ -28,4 +28,4 @@ import { GameOverlay, GamePad } from '../components';
     `,
   ],
 })
-export class GameComponent {}
+export class GamePageComponent {}
