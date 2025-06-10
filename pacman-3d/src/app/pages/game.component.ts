@@ -6,7 +6,7 @@ import { GameOverlay, GamePad } from '../components';
   imports: [GameOverlay, GamePad],
   standalone: true,
   template: `
-    <div class="game-container">
+    <div class="page game">
       <game-overlay></game-overlay>
       <pac-game-pad></pac-game-pad>
       <div class="game-canvas"></div>
@@ -14,7 +14,7 @@ import { GameOverlay, GamePad } from '../components';
   `,
   styles: [
     `
-      .game-container {
+      .game {
         position: relative;
         width: 100vw;
         height: 100vh;

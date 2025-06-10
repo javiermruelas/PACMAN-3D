@@ -1,35 +1,36 @@
 import { Component } from '@angular/core';
 import { RouterModule, RouterOutlet, Routes } from '@angular/router';
-import { PauseComponent, SettingsComponent } from '../../pages';
+import { PauseComponent, SettingsPageComponent } from '../../pages';
 
 export const overlayRoutes: Routes = [
   { path: 'pause', component: PauseComponent },
-  { path: 'settings', component: SettingsComponent },
+  { path: 'settings', component: SettingsPageComponent },
 ];
 
 @Component({
   selector: 'game-overlay',
-  standalone: true,
   imports: [RouterOutlet, RouterModule],
   template: `
-    <div class="game-overlay">
+    <div id="game-overlay-component" class="game-overlay">
       <router-outlet></router-outlet>
     </div>
   `,
   styles: [
     `
-      .overlay {
+      .game-overlay {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
         pointer-events: none;
+        z-index: 10;
       }
-      .overlay > * {
+      .game-overlay > * {
         pointer-events: auto;
       }
     `,
   ],
+  standalone: true,
 })
 export class GameOverlay {}
