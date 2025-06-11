@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { SplashChars, ButtonComponent } from '../components';
-import { MusicService } from '../services';
+import { SoundService } from '../services';
 
 @Component({
   selector: 'pac-splash',
   imports: [ButtonComponent, SplashChars],
-  providers: [MusicService],
+  providers: [SoundService],
   standalone: true,
   template: `
     <div id="splash-page" class="page splash">
@@ -63,15 +63,15 @@ export class SplashPageComponent {
 
   constructor(
     private router: Router,
-    private music: MusicService,
+    private sound: SoundService,
   ) {}
 
   private playIntro(): void {
-    this.music.start();
-
-    setTimeout(() => {
-      this.music.stop();
-    }, 3050);
+    // import a sound and play it through the sound service
+    // this.sound.play();
+    // setTimeout(() => {
+    //   this.sound.stop();
+    // }, 3050);
   }
 
   private createBubbles(): HTMLDivElement[] {

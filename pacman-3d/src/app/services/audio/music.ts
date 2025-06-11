@@ -1,10 +1,11 @@
-import * as Tone from 'tone';
 import { Injectable } from '@angular/core';
+import { SoundService } from '../sound.service';
+import * as Tone from 'tone';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MusicService {
+export class Music {
   private synth: Tone.Synth;
   private part: Tone.Part;
   private isPlaying = false;
@@ -38,9 +39,9 @@ export class MusicService {
     { time: '1:1:3', note: 'D3', duration: '8n' },
   ];
 
-  constructor() {
+  constructor(private soundService: SoundService) {
     // Initialize synth with square wave
-    this.synth = new Tone.Synth({
+    this.synth = this.soundService.createSynth({
       oscillator: { type: 'square' },
       envelope: {
         attack: 0.01,
@@ -48,10 +49,10 @@ export class MusicService {
         sustain: 0.3,
         release: 0.1,
       },
-    }).toDestination();
+    } as Tone.SynthOptions);
 
     // Create part
-    this.part = new Tone.Part((time, value) => {
+    this.part = this.soundService.createPart((time, value) => {
       this.synth.triggerAttackRelease(value.note, value.duration, time);
     }, this.melody);
 
@@ -63,13 +64,11 @@ export class MusicService {
     if (this.isPlaying) return;
 
     // Start audio context
-    await Tone.start();
+    await this.soundService.initialize();
 
     // Start transport and part
-    Tone.Transport.bpm.value = 120;
+    this.soundService.startTransport(120);
     this.part.start(0);
-    Tone.Transport.start();
-
     this.isPlaying = true;
   }
 
@@ -77,7 +76,7 @@ export class MusicService {
     if (!this.isPlaying) return;
 
     this.part.stop();
-    Tone.Transport.stop();
+    this.soundService.stopTransport();
     this.isPlaying = false;
   }
 }

@@ -1,3 +1,3 @@
-export * from './ghost.model';
-export * from './item.model';
-export * from './pac.model';
+export * from './ghost.asset';
+export * from './item.asset';
+export * from './pac.asset';

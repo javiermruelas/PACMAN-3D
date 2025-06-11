@@ -9,6 +9,7 @@ import { GameOverlay, GamePad } from '../components';
     <div class="page game">
       <game-overlay></game-overlay>
       <pac-game-pad></pac-game-pad>
+      <div class="game-ui"></div>
       <div class="game-canvas"></div>
     </div>
   `,

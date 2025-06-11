@@ -1,2 +1,2 @@
-export * from './music.service';
-export * from './sound.service';
+export * from './music';
+export * from './effects';
