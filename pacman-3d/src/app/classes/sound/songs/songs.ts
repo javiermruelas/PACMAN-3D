@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SoundService } from '../sound.service';
+import { SoundService } from '../../../services/sound.service';
 import * as Tone from 'tone';
 
 @Injectable({

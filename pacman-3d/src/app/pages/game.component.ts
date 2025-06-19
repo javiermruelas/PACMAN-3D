@@ -15,7 +15,7 @@ import { GameOverlay, GamePad } from '../components';
   `,
   styles: [
     `
-      .game {
+      .game-ui {
         position: relative;
         width: 100vw;
         height: 100vh;
