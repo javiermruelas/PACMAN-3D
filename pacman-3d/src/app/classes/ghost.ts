@@ -53,6 +53,6 @@ export class Ghost {
   private moveFrightened(): void {}
 
   private updatePosition(direction: Direction): void {
-    this.asset.updatePosition(this.model.position);
+    // this.asset.updatePosition(this.model.position);
   }
 }
