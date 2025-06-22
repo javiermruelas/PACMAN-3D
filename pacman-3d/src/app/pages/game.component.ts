@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { GameOverlay, GamePad } from '../components';
+import { RendererService } from '../services';
 
 @Component({
   selector: 'pac-game',
+  providers: [RendererService],
   imports: [GameOverlay, GamePad],
   standalone: true,
   template: `
@@ -10,7 +12,7 @@ import { GameOverlay, GamePad } from '../components';
       <game-overlay></game-overlay>
       <pac-game-pad></pac-game-pad>
       <div class="game-ui"></div>
-      <div class="game-canvas"></div>
+      <canvas id="render-canvas" class="game-canvas"></canvas>
     </div>
   `,
   styles: [
@@ -29,4 +31,15 @@ import { GameOverlay, GamePad } from '../components';
     `,
   ],
 })
-export class GamePageComponent {}
+export class GamePageComponent {
+  private renderer;
+  @ViewChild('render-canvas', { static: true })
+  public canvas: ElementRef<HTMLCanvasElement>;
+
+  public constructor(private renderer: RendererService) {}
+
+  public ngOnInit(): void {
+    this.renderer.createScene(this.canvas);
+    this.renderer.animate();
+  }
+}
