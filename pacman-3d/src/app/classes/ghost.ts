@@ -1,7 +1,7 @@
-import { inject, Injectable, InjectionToken } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { AssetService, GhostService } from '../services';
 import { GhostModel } from './models';
 import { GhostMode, Direction } from './enums';
-import { AssetService } from '../services';
 import { GhostStrategy } from './interfaces';
 
 /**
@@ -12,8 +12,9 @@ import { GhostStrategy } from './interfaces';
  */
 @Injectable()
 export class Ghost {
-  private model: GhostModel = inject(GhostModel);
   private asset: AssetService = inject(AssetService);
+  private service: GhostService = inject(GhostService);
+  private model: GhostModel = new GhostModel();
   private strategy: GhostStrategy;
 
   constructor(strategy: GhostStrategy) {
@@ -24,6 +25,15 @@ export class Ghost {
     switch (this.model.mode) {
       case GhostMode.CHASE:
         this.moveChase();
+        break;
+      case GhostMode.SCATTER:
+        this.moveScatter();
+        break;
+      case GhostMode.FRIGHTENED:
+        this.moveFrightened();
+        break;
+      case GhostMode.EATEN:
+        this.playDeathAnimation();
         break;
     }
   }
@@ -52,7 +62,9 @@ export class Ghost {
 
   private moveFrightened(): void {}
 
+  private playDeathAnimation(): void {}
+
   private updatePosition(direction: Direction): void {
-    // this.asset.updatePosition(this.model.position);
+    // this.service.updatePosition(this.model.position);
   }
 }
