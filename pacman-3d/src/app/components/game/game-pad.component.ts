@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'pac-game-pad',
+  selector: 'game-pad',
   template: `
     <div id="user-controls-legend" class="game-pad">
       <div class="controls-group">

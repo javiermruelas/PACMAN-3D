@@ -1,39 +1,38 @@
-import { ElementRef, Injectable, NgZone, OnDestroy } from '@angular/core';
+import { ElementRef, Injectable, NgZone, inject } from '@angular/core';
 import * as THREE from 'three';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RendererService implements OnDestroy {
-  private canvas: HTMLCanvasElement;
-  private renderer: THREE.WebGLRenderer;
-  private camera: THREE.PerspectiveCamera;
-  private scene: THREE.Scene;
-  private light: THREE.AmbientLight;
+export class RendererService {
+  private ngZone: NgZone = inject(NgZone);
+  private canvas: ElementRef<HTMLCanvasElement> | undefined;
+  private renderer: THREE.WebGLRenderer | null = null;
+  private camera: THREE.PerspectiveCamera | null = null;
+  private scene: THREE.Scene | null = null;
+  private light: THREE.AmbientLight | null = null;
 
-  private cube: THREE.Mesh;
+  private cube: THREE.Mesh | null = null;
 
-  private frameId: number = null;
+  private frameId: number | null = null;
 
-  public constructor(private ngZone: NgZone) {}
+  public setCanvas(canvas: ElementRef<HTMLCanvasElement>): void {
+    this.canvas = canvas;
+  }
 
-  public ngOnDestroy(): void {
+  public destroy(): void {
     if (this.frameId != null) {
       cancelAnimationFrame(this.frameId);
     }
     if (this.renderer != null) {
       this.renderer.dispose();
       this.renderer = null;
-      this.canvas = null;
     }
   }
 
-  public createScene(canvas: ElementRef<HTMLCanvasElement>): void {
-    // The first step is to get the reference of the canvas element from our HTML document
-    this.canvas = canvas.nativeElement;
-
+  public createScene(): void {
     this.renderer = new THREE.WebGLRenderer({
-      canvas: this.canvas,
+      canvas: this.canvas?.nativeElement,
       alpha: true, // transparent background
       antialias: true, // smooth edges
     });
@@ -81,6 +80,27 @@ export class RendererService implements OnDestroy {
   }
 
   public render(): void {
+    if (!this.renderer) {
+      throw new Error(
+        'RenderService cannot render. this.render not initialized.',
+      );
+    }
+    if (!this.cube) {
+      throw new Error(
+        'RendererService cannot render. this.canvas not initialized.',
+      );
+    }
+    if (!this.scene) {
+      throw new Error(
+        'RenderService cannot render. this.scene not initialized.',
+      );
+    }
+    if (!this.camera) {
+      throw new Error(
+        'RendererService cannot render. this.camera not initialized.',
+      );
+    }
+
     this.frameId = requestAnimationFrame(() => {
       this.render();
     });
@@ -90,7 +110,24 @@ export class RendererService implements OnDestroy {
     this.renderer.render(this.scene, this.camera);
   }
 
-  public resize(): void {
+  /**
+   * todo: refactor so that the renderer service is rendering our entire subprop tree
+   */
+  public resize(assets = []): void {
+    if (!this.renderer) {
+      throw new Error(
+        'RenderService cannot run resize method. this.renderer not initialized.',
+      );
+    }
+    if (!this.camera) {
+      throw new Error(
+        'RendererService cannot run resize method. Camera is not initialized.',
+      );
+    }
+    if (!this.cube) {
+      throw new Error('RendererService cannot render. Asset not initialized.');
+    }
+
     const width = window.innerWidth;
     const height = window.innerHeight;
 
